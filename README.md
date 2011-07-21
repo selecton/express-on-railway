@@ -132,7 +132,7 @@ and you can more finely tune the resources to specify certain actions, middlewar
         });
     };
 
-You can specify the middleware for whole namespace
+You can specify the middleware for whole namespace. In this case middleware will be executed for each resource
 
     function basic_auth(req, res, next) {
         //is admin logged?
