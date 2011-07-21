@@ -132,6 +132,21 @@ and you can more finely tune the resources to specify certain actions, middlewar
         });
     };
 
+You can specify the middleware for whole namespace
+
+    function basic_auth(req, res, next) {
+        //is admin logged?
+        next();
+    }
+
+    exports.routes = function(map) {
+        map.namespace('admin', {middleware: basic_auth}, function(admin) {
+            admin.resources('products');
+            admin.resources('accounts');
+        }
+
+    }
+
 for debugging routes described in `config/routes.js` you can use `railway routes` command:
 
     $ railway routes
