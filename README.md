@@ -404,6 +404,28 @@ Join all stylesheet files listed in `stylesheets_include_tag` into one
 
     app.enable('merge stylesheets'); // in config/environments/production.js
 
+
+custom view helpers
+-------------------
+In order to add custom view helper you can require the view helper file for example in server.js
+and in this file type:
+
+    railway.helpers.__proto__.flash_messages = function() {
+        var request = this.controller.request;
+        var out = new Array();
+        request.flash('info').forEach(function(msg) {
+            out.push('<div class="flash info">' + msg + '</div>');
+        });
+
+        request.flash('error').forEach(function(msg) {
+           out.push('<div class="flash error">' + msg + '</div>')
+        });
+
+        return out.join('\n');
+    };
+
+I'm sure in the future express-on-railway releases this will be more straightforward.
+
 MIT License
 ===========
 
